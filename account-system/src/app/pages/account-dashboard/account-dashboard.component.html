@@ -5,6 +5,21 @@
     </div>
 </div>
 
+
+<div class="div" style="margin-top: 2%; margin-left: 5%;" *ngIf="user" >
+    <h1 class="tittle">000000{{user.dbid}} - {{user.first_name}} {{user.last_name}}</h1>
+    <hr class="name">
+    <hr class="line">
+</div>
+
+
+<div class="row" style="margin-top: 1%; justify-content: flex-end;">
+    <div class="col-4" style="text-align: end;">
+        <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-plus"
+            style="margin-right: 20%;" (click)="addAccount()"></button>
+    </div>
+</div>
+
 <div class="container" style="margin-top: 25px;">
     <div class="row align-items-start" style="text-align: center;">
         <p-card *ngIf="accountList.length == 0">
@@ -19,8 +34,97 @@
     <div class="row align-items-start">
         <div *ngFor="let account of accountList;" class="col">
             <p-card *ngIf="account.status == 1">
-                {{account.dbid}}
+                <ng-template pTemplate="header">
+                    <div class="div" class="header-card">
+                        {{user.first_name}} {{user.last_name}}
+                    </div>
+                </ng-template>
+                <div class="div" class="account-number">
+                    No. Cuenta: {{account.account_type}}
+                </div>
+                <div class="div" class="type">
+                    {{ (account.dbid == 1) ? 'MONETARIA' : 'AHORRO'}}
+                </div>
+                <div class="div" class="amount">
+                    Saldo disponible: {{ (account.currency == 1) ? 'Q' : '$'}} {{account.amount}}
+                </div>
+                <ng-template pTemplate="footer">
+                    <button type="button" class="btn btn-info checks">Chequeras</button>
+                </ng-template>
             </p-card>
         </div>
     </div>
 </div>
+
+
+<!--p-dialog [(visible)]="accountDialog" [style]="{width: '450px'}" header="Client Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-messages [(value)]="msgs"></p-messages>
+        <div class="field">
+            <label for="name">CUI/DPI</label>
+            <p-inputNumber [maxlength]="17" id="cui" [(ngModel)]="newAccount.cui" autofocus />
+            <small class="p-error" *ngIf="submitted && !newClient.cui">CUI requerido.</small>
+        </div>
+        <div class="field">
+            <label for="name">NIT</label>
+            <input type="text" pInputText id="nit" [(ngModel)]="newClient.nit" required autofocus />
+            <small class="p-error" *ngIf="submitted && !newClient.nit">Nombre requerido.</small>
+        </div>
+        <div class="field">
+            <label for="name">Nombres</label>
+            <input type="text" pInputText id="first_name" [(ngModel)]="newClient.first_name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !newClient.first_name">Nombre requerido.</small>
+        </div>
+        <div class="field">
+            <label for="name">Apellidos</label>
+            <input type="text" pInputText id="last_name" [(ngModel)]="newClient.last_name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !newClient.last_name">Nombre requerido.</small>
+        </div>
+
+        <div class="field">
+            <label for="gender">Genero</label>
+            <p-dropdown [(ngModel)]="newClient.gender" inputId="gender" [options]="genders" placeholder="Select">
+                <ng-template let-option pTemplate="item">
+                    <span>{{option.label}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+
+        <div class="field">
+            <label for="name">No. Telefono</label>
+            <p-inputNumber [maxlength]="10" id="phone_number" [(ngModel)]="newClient.phone_number" autofocus
+                [(ngModel)]="newClient.phone_number" mask="9999-9999" />
+        </div>
+
+        <div class="field">
+            <label for="name">Coreo</label>
+            <input type="text" pInputText id="email_address" [(ngModel)]="newClient.email_address" required autofocus />
+            <small class="p-error" *ngIf="submitted && !newClient.email_address">Nombre requerido.</small>
+        </div>
+        <div class="field">
+            <label for="person_type">Tipo</label>
+            <p-dropdown [(ngModel)]="newClient.person_type" inputId="person_type" [options]="personsType"
+                placeholder="Select">
+                <ng-template let-option pTemplate="item">
+                    <span>{{option.label}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="field">
+            <label for="name">Fecha de nacimiento</label>
+            <p-calendar id="birthay" [(ngModel)]="newClient.birthay" autofocus />
+            <small class="p-error" *ngIf="submitted && !newClient.birthay">Nombre requerido.</small>
+        </div>
+        <div class="field">
+        </div>
+        <div class="field">
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveClient()"></button>
+    </ng-template>
+</p-dialog-->

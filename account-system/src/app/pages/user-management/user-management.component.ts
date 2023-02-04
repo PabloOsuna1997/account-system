@@ -30,13 +30,14 @@ export class UserManagementComponent {
 	personsType: SelectItem[] = [];
 	msgs: any = [];
 	submitted!: boolean;
-	
+
 	constructor(private messageService: MessageService, private accountApi: AccountService, private router: Router,
-		private crypto: Crypto) { }
-	
+		private crypto: Crypto) {
+	}
+
 	ngOnInit() {
-		this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
-		this.msgs.push({ severity: 'error', summary: 'Ups!!', detail: 'No se cargaron los usuarios' });
+		//this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
+		//this.msgs.push({ severity: 'error', summary: 'Ups!!', detail: 'No se cargaron los usuarios' });
 		(async () => {
 			await this.getUsers();
 			await this.getGenders();
@@ -59,7 +60,7 @@ export class UserManagementComponent {
 			this.msgs.push({ severity: 'error', summary: 'Ups!!', detail: 'No se cargaron los usuarios' });
 			return;
 		}
-		this.usersList = response.data.filter( (user: Client) => user.status == 1);
+		this.usersList = response.data.filter((user: Client) => user.status == 1);
 		console.log("usuarios: ", this.usersList)
 
 	}
@@ -111,7 +112,7 @@ export class UserManagementComponent {
 	}
 
 
-	openNew() {		
+	openNew() {
 		this.newClient = {
 			"dbid": 0,
 			"first_name": "",
@@ -150,7 +151,7 @@ export class UserManagementComponent {
 			} else {
 				this.msgs.push({ severity: 'error', summary: 'Ups!!', detail: 'No se pudo registrar el usuario' });
 			}
-		}else{
+		} else {
 			console.log("datos")
 			this.msgs.push({ severity: 'error', summary: 'Upss', detail: 'Por favor complete todos los campos' });
 		}
@@ -197,7 +198,7 @@ export class UserManagementComponent {
 		}
 	}
 
-	openAccounts(client: Client){
+	openAccounts(client: Client) {
 		const ecr = this.crypto.encrypt(client.dbid.toString());
 		this.router.navigate([`/management-account/${ecr}`], { replaceUrl: true })
 	}

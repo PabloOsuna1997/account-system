@@ -8,6 +8,8 @@ import { Gender } from '../models/Gender';
 import { PersonType } from '../models/PersonType';
 import { Account } from '../models/Account';
 import { environment } from '../../enviroment/enviroment';
+import { AccountType } from '../models/AccountType';
+import { CurrencyType } from '../models/CurrencyType';
 
 @Injectable({
   providedIn: 'root'
@@ -175,6 +177,36 @@ export class AccountService {
   public deleteAccount(account:  Account): Observable<any> {
     //this.loadingService.setLoading(true);
     return this.http.put<Account>(`${this.account_api}/account/v1/delete/${account.dbid}`, {}).pipe(
+      map(response => {
+        //this.loadingService.setLoading(false);
+        return response
+      }),
+      catchError((error): any => {
+        //this.loadingService.setLoading(false);
+        console.log("error:", error);
+        return of({ code: error.code })
+      })
+    );
+  }
+
+  public getAccountTypes(): Observable<any> {
+    //this.loadingService.setLoading(true);
+    return this.http.get<ResponseApi<AccountType[]>>(`${this.account_api}/account/v1/types`).pipe(
+      map(response => {
+        //this.loadingService.setLoading(false);
+        return response
+      }),
+      catchError((error): any => {
+        //this.loadingService.setLoading(false);
+        console.log("error:", error);
+        return of({ code: error.code })
+      })
+    );
+  }
+
+  public getCurrencyTypes(): Observable<any> {
+    //this.loadingService.setLoading(true);
+    return this.http.get<ResponseApi<CurrencyType[]>>(`${this.account_api}/currency/v1/types`).pipe(
       map(response => {
         //this.loadingService.setLoading(false);
         return response
