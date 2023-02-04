@@ -2,23 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.bank.bank.model.db;
+package com.bank.bank.model;
+
+import lombok.Data;
 
 /**
  *
  * @author J. Pablo Osuna
  */
-
-import java.util.Date;
-import lombok.Data;
-
 @Data
-public class Currency {
-    private char currency;
+public class BusinessStatus {
     private int dbid;
+    private String code;
+    private String discriminator;
     private String description;
-    private Date registry_date;
-    private String user_registry;
-    private Date last_modified;
-    private String user_modified;
 }
