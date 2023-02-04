@@ -28,6 +28,11 @@ public class ClientSvcImpl implements ClientSvcInte {
     }
 
     @Override
+    public Client findByDbid(String id) {
+        return clientRepositoryInte.findById(Integer.valueOf(id)).get();
+    }
+
+    @Override
     @org.springframework.transaction.annotation.Transactional(readOnly = true)
     public Client save(Client client) {
         clientRepositoryInte.save(client);

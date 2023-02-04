@@ -31,10 +31,14 @@ public class ClientRest {
     private ClientSvcInte clientSvcInte;
 
     @GetMapping("list")
-    public ResponseEntity<Object> getList() {
-        var result = clientSvcInte.findAll();
-        return responseUtil.getReponse(200, result,(result.size() > 0) ?
-                "Lista de usuarios" : "No existen usuarios");
+    public ResponseEntity<Object> getList(@RequestParam(name="user",required=false) String user) {
+        Object result;
+        if(user == null){
+            result = clientSvcInte.findAll();
+        }else{
+            result = clientSvcInte.findByDbid(user);
+        }
+        return responseUtil.getReponse(200, result, "usuarios");
     }
 
     @PostMapping("save")

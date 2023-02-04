@@ -10,12 +10,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.io.Serializable;
 
-/**
- *
- * @author jegarcia
- * @param <T>
- * @param <t>
- */
+
 @NoRepositoryBean
 public interface CustomRepository<T, t extends Serializable> extends PagingAndSortingRepository<T, t> {
     

@@ -4,17 +4,19 @@
  */
 package com.bank.bank.svc.inte;
 
+import com.bank.bank.model.Account;
 import com.bank.bank.model.Client;
+
 import java.util.List;
 
 /**
  *
  * @author J. Pablo Osuna
  */
-public interface ClientSvcInte {
-    public List<Client> findAll();
-    public Client findByDbid(String user);
-    public Client save(Client client);
-    public Client update(int dbid, Client client);
+public interface AccountSvcInte {
+    public List<Account> findAll();
+    public Account save(Account account);
+    public Account update(int dbid, Account account);
     public boolean delete(int dbid);
+    public List<Account> findByUserId(int userId);
 }

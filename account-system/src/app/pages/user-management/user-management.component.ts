@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Product } from './Product';
-import { ProductService } from './productService';
 import { SelectItem } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { AccountService } from '../../Services/account.service';
@@ -8,6 +6,8 @@ import { lastValueFrom } from 'rxjs';
 import { Client } from '../../models/Client';
 import { Gender } from '../../models/Gender';
 import { PersonType } from '../../models/PersonType';
+import { Router } from '@angular/router';
+import { Crypto } from '../../Services/crypto';
 
 @Component({
 	selector: 'app-user-management',
@@ -31,7 +31,8 @@ export class UserManagementComponent {
 	msgs: any = [];
 	submitted!: boolean;
 	
-	constructor(private messageService: MessageService, private accountApi: AccountService) { }
+	constructor(private messageService: MessageService, private accountApi: AccountService, private router: Router,
+		private crypto: Crypto) { }
 	
 	ngOnInit() {
 		this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
@@ -194,5 +195,10 @@ export class UserManagementComponent {
 		else {
 			this.msgs.push({ severity: 'error', summary: 'Upss', detail: 'Por favor complete todos los campos' });
 		}
+	}
+
+	openAccounts(client: Client){
+		const ecr = this.crypto.encrypt(client.dbid.toString());
+		this.router.navigate([`/management-account/${ecr}`], { replaceUrl: true })
 	}
 }

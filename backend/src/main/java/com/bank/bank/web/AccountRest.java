@@ -4,13 +4,17 @@
  */
 package com.bank.bank.web;
 
+import com.bank.bank.model.Account;
 import com.bank.bank.model.Client;
-import com.bank.bank.svc.inte.ClientSvcInte;
+import com.bank.bank.svc.inte.AccountSvcInte;
 import com.bank.bank.svc.inte.ResponseUtilSvcInte;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 /**
  *
@@ -20,37 +24,47 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @ComponentScan(basePackages = "com.bank.bank")
-@RequestMapping("client/v1/")
+@RequestMapping("account/v1/")
 public class AccountRest {
 
     @Autowired
     private ResponseUtilSvcInte responseUtil;
 
     @Autowired
-    private ClientSvcInte clientSvcInte;
+    private AccountSvcInte accountSvcInte;
 
     @GetMapping("list")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> getList() {
-        var result = clientSvcInte.findAll();
-        return responseUtil.getReponse(200, result,(result.size() > 0) ?
-                "Lista de usuarios" : "No existen usuarios");
+        Object result;
+        result = accountSvcInte.findAll();
+        return responseUtil.getReponse(200, result, "listado de cuentas encontradas");
     }
 
+    @GetMapping("/user/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Object> getAccountVyUserId(@PathVariable int userId) {
+        Object result;
+        result = accountSvcInte.findByUserId(userId);
+        return responseUtil.getReponse(200, result, "listado de cuentas encontradas");
+    }
+
+
     @PostMapping("save")
-    public ResponseEntity<Object> save(@RequestBody Client client) {
-        var result = clientSvcInte.save(client);
-        return responseUtil.getReponse(200,result, "Usuario creado");
+    public ResponseEntity<Object> save(@RequestBody Account account) {
+        var result = accountSvcInte.save(account);
+        return responseUtil.getReponse(200,result, "Cuenta creado");
     }
 
     @PutMapping("/update/{dbid}")
-    public ResponseEntity<Object> update(@PathVariable int dbid,  @RequestBody Client client) {
-        var result = clientSvcInte.update(dbid, client);
-        return responseUtil.getReponse(200, result, "Usuario Actualizado");
+    public ResponseEntity<Object> update(@PathVariable int dbid,  @RequestBody Account account) {
+        var result = accountSvcInte.update(dbid, account);
+        return responseUtil.getReponse(200, result, "Cuenta Actualizado");
     }
 
     @PutMapping("/delete/{dbid}")
     public ResponseEntity<Object> delete(@PathVariable int dbid) {
-        var result = clientSvcInte.delete(dbid);
-        return responseUtil.getReponse( (result) ? 200 : 500, result, "Usuario eliminado");
+        var result = accountSvcInte.delete(dbid);
+        return responseUtil.getReponse( (result) ? 200 : 500, result, "Cuenta eliminado");
     }
 }

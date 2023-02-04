@@ -16,8 +16,6 @@ import {ButtonModule} from 'primeng/button';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 
-
-import { ProductService } from './pages/user-management/productService';
 import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 
@@ -42,13 +40,15 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {InputMaskModule} from 'primeng/inputmask';
 import {DataViewModule} from 'primeng/dataview';
+import { AccountDashboardComponent } from './pages/account-dashboard/account-dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainDashboardComponent,
     HeaderComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    AccountDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -104,7 +104,7 @@ import {DataViewModule} from 'primeng/dataview';
     InputMaskModule,
     DataViewModule
   ],
-  providers: [ProductService, MessageService],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

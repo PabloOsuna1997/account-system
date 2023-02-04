@@ -1,0 +1,26 @@
+<div class="row"
+    style="margin-top: 1%; justify-content: center; background-color: #20315f; height: 70px; align-items: center; vertical-align:middle;">
+    <div class="col-4" style="text-align: center; vertical-align: middle;">
+        <h1 style="color: white; font-size: 25px">Administracion de cuentas</h1>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 25px;">
+    <div class="row align-items-start" style="text-align: center;">
+        <p-card *ngIf="accountList.length == 0">
+            <span style="align-items: center;">
+                No hay cuentas asociadas al usuario
+            </span>
+        </p-card>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 25px;">
+    <div class="row align-items-start">
+        <div *ngFor="let account of accountList;" class="col">
+            <p-card *ngIf="account.status == 1">
+                {{account.dbid}}
+            </p-card>
+        </div>
+    </div>
+</div>

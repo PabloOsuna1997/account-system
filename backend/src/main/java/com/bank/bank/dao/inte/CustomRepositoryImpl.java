@@ -12,12 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.io.Serializable;
 
-/**
- *
- * @author jegarcia
- * @param <T>
- * @param <t>
- */
+
 public class CustomRepositoryImpl<T, t extends Serializable> extends SimpleJpaRepository<T, t>
         implements CustomRepository<T, t> {
 

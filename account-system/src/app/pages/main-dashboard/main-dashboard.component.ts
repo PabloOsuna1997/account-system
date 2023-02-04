@@ -12,11 +12,12 @@ import { Router } from '@angular/router';
 })
 export class MainDashboardComponent {
 
-  sections: any[] = [{
-    "name": "Administrador de usuarios",
-    "Image": "url",
-    "redirectTo": "management-users"
-    }, 
+  sections: any[] = [
+    {
+      "name": "Administrador de usuarios",
+      "Image": "url",
+      "redirectTo": "management-users"
+    },
     {
       "name": "Cuentas",
       "Image": "url",
