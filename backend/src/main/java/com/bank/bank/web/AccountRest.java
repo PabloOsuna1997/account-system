@@ -9,7 +9,6 @@ import com.bank.bank.svc.inte.ClientSvcInte;
 import com.bank.bank.svc.inte.ResponseUtilSvcInte;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @ComponentScan(basePackages = "com.bank.bank")
 @RequestMapping("client/v1/")
-public class ClientRest {
+public class AccountRest {
 
     @Autowired
     private ResponseUtilSvcInte responseUtil;

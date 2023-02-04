@@ -28,7 +28,7 @@ public class ClientSvcImpl implements ClientSvcInte {
     }
 
     @Override
-    @Transactional
+    @org.springframework.transaction.annotation.Transactional(readOnly = true)
     public Client save(Client client) {
         clientRepositoryInte.save(client);
         return client;

@@ -39,6 +39,7 @@ public class Client {
     @Column
     private String email_address;
     @Column
+    @CreationTimestamp
     private Date birthay;
     @Column
     private String marial_status;
