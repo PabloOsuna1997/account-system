@@ -1,0 +1,128 @@
+<div class="row"
+    style="margin-top: 1%; justify-content: center; background-color: #20315f; height: 70px; align-items: center; vertical-align:middle;">
+    <div class="col-4" style="text-align: center; vertical-align: middle;">
+        <h1 style="color: white; font-size: 25px">Administracion de chequeras</h1>
+    </div>
+</div>
+
+<p-breadcrumb [model]="items"></p-breadcrumb>
+
+<div class="div" style="margin-top: 2%; margin-left: 5%;" *ngIf="user">
+    <h1 class="tittle">000000{{user.dbid}} - {{user.first_name}} {{user.last_name}}</h1>
+    <hr class="name">
+    <hr class="line">
+</div>
+
+
+<div class="row" style="margin-top: 1%; justify-content: flex-end;">
+    <div class="col-4" style="text-align: end;">
+        <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-plus add"
+            style="margin-right: 20%;" (click)="openNew()"></button>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 25px;">
+    <div class="row align-items-start" style="text-align: center;">
+        <p-card *ngIf="checkBooks.length == 0">
+            <span style="align-items: center;">
+                No hay chequeras asociadas a la cuenta
+            </span>
+        </p-card>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 25px;">
+    <div class="row">
+        <div *ngFor="let checkBook of checkBooks;" class="col-6" style="margin-top: 15px;">
+            <p-card *ngIf="checkBook.status == 1"><!--(click)="updateInfo(checkBook)"-->
+                <ng-template pTemplate="header">
+                    <div class="row "   >
+                        <div class="col-6">
+                        </div>
+                        <div class="col-6 justify-content-end"  style="justify-content: flex-end !important;">
+                            <div class="row" style="margin-top: 1%; justify-content: flex-end;">
+                                <div class="col-4" style="text-align: end;">
+                                    <button pButton pRipple type="button" icon="pi pi-pencil"
+                                        class="p-button-rounded p-button-pencil add" 
+                                        (click)="openUpdate(checkBook)"></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6" class="header-card">
+                            Nombre de chequera: {{user.first_name}} {{user.last_name}}
+                        </div>
+                    </div>
+                </ng-template>
+                <div class="container" style="margin-top: 25px;">
+                    <div class="row align-items-start">
+                        <div class="col-6 account-number" style="margin-top: 15px;">
+                            No. Chequera: {{checkBook.dbid}}
+                        </div>
+                        <div class="col-6 account-number" style="margin-top: 15px;" *ngIf="newAccount">
+                            No. Cuenta: {{newAccount.dbid}}
+                        </div>
+                    </div>
+                    <div class="row align-items-start">
+                        <div class="col-6 type" style="margin-top: 15px;" >
+                            Fecha de Emision: {{checkBook.registry_date | date:'mediumDate'}}
+                        </div>
+                        
+                        <div class="col-6 account-number" style="margin-top: 15px;">
+                            Cantidad de cheques: {{checkBook.quantity_checks}}
+                        </div>
+                    </div>
+                    <!--
+                    <div class="row align-items-start">
+                        <div class="col-6 amount" style="margin-top: 15px;">
+                            Correlativo Inicial: {{checkBook.start_correlative}}
+                        </div>
+                        <div class="col-6 amount" style="margin-top: 15px;">
+                            Correlativo Final: {{checkBook.fin_correlative}}
+                        </div>
+                    </div>
+                    -->
+                </div>
+                <ng-template pTemplate="footer">
+                    <button type="button" class="btn btn-info checks">Cheques Registrados</button>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+</div>
+
+
+<p-dialog [(visible)]="CheckBookDialog" [style]="{width: '450px', height: '600px'}" header="Solicitud de nueva chequera" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-messages [(value)]="msgs"></p-messages>
+        <div class="field">
+            <label for="account_type">Nombres</label>
+            <input type="text" pInputText id="first_name" [(ngModel)]="user.first_name" disabled autofocus value="user.first_name" />
+        </div>
+        <div class="field">
+            <label for="account_type">Apellidos</label>
+            <input type="text" pInputText id="last_name" [(ngModel)]="user.last_name" disabled autofocus value="user.last_name" />
+        </div>
+        <div class="field">
+            <label for="account_type">No. Cuenta:</label>
+            <input type="text" pInputText id="last_name" [(ngModel)]="newAccount.dbid" disabled autofocus value="newAccount.dbid" />
+
+        </div>
+        <div class="field">
+            <label for="account_type">Cantidad de cheques:</label>
+            <p-dropdown  [virtualScroll]="true" [virtualScrollItemSize]="3" [(ngModel)]="newCheckbook.quantity_checks" inputId="quantity_checks" [options]="quantityList"
+                    placeholder="Cantidad de chueques">
+                    <ng-template let-option pTemplate="item">
+                        <span>{{option.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+        </div>   
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Anular" icon="pi pi-trash" class="p-button-text" (click)="deleteCheckBook()"></button>
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Solicitar" icon="pi pi-check" class="p-button-text" (click)="saveCheckBook()"></button>
+    </ng-template>
+
+</p-dialog>

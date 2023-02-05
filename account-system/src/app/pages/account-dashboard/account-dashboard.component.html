@@ -1,0 +1,126 @@
+
+<div class="row"
+style="margin-top: 1%; justify-content: center; background-color: #20315f; height: 70px; align-items: center; vertical-align:middle;">
+<div class="col-4" style="text-align: center; vertical-align: middle;">
+    <h1 style="color: white; font-size: 25px">Administracion de cuentas</h1>
+</div>
+</div>
+
+<p-breadcrumb [model]="items"></p-breadcrumb>
+
+<div class="div" style="margin-top: 2%; margin-left: 5%;" *ngIf="user">
+    <h1 class="tittle">000000{{user.dbid}} - {{user.first_name}} {{user.last_name}}</h1>
+    <hr class="name">
+    <hr class="line">
+</div>
+
+
+<div class="row" style="margin-top: 1%; justify-content: flex-end;">
+    <div class="col-4" style="text-align: end;">
+        <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-plus add"
+            style="margin-right: 20%;" (click)="openNew()"></button>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 25px;">
+    <div class="row align-items-start" style="text-align: center;">
+        <p-card *ngIf="accountList.length == 0">
+            <span style="align-items: center;">
+                No hay cuentas asociadas al usuario
+            </span>
+        </p-card>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 25px;">
+    <div class="row">
+        <div *ngFor="let account of accountList;" class="col-6" style="margin-top: 15px;">
+            <p-card *ngIf="account.status == 1"><!--(click)="updateInfo(account)"-->
+                <ng-template pTemplate="header">
+                    <div class="row" style="justify-content: flex-end !important;">
+                        <div class="col-6">
+                        </div>
+                        <div class="col-6 justify-content-end"  style="justify-content: flex-end !important;">
+                            <div class="row" style="margin-top: 1%; justify-content: flex-end;">
+                                <div class="col-4" style="text-align: end;">
+                                    <button pButton pRipple type="button" icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-pencil add" 
+                                    (click)="openUpdate(account)"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="justify-content: flex-start !important;">
+                        <div class="col-6 justify-content-start">
+                            <div class="div" class="header-card">
+                                {{user.first_name}} {{user.last_name}}
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <div class="div" class="account-number">
+                    No. Cuenta: {{account.account_type}}
+                </div>
+                <div class="div" class="type">
+                    {{ (account.dbid == 1) ? 'MONETARIA' : 'AHORRO'}}
+                </div>
+                <div class="div" class="amount">
+                    Saldo disponible: {{ (account.currency == 1) ? 'Q' : '$'}} {{account.amount}}
+                </div>
+                <ng-template pTemplate="footer">
+                    <button type="button" class="btn btn-info checks"
+                        (click)="openChecks(account.dbid)">Chequeras</button>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+</div>
+
+
+<p-dialog [(visible)]="accountDialog" [style]="{width: '450px'}" header="Client Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-messages [(value)]="msgs"></p-messages>
+        <div class="field">
+            <label for="account_type">Tipo de cuente</label>
+            <p-dropdown [(ngModel)]="newAccount.account_type" inputId="account_type" [options]="accountTypes"
+                placeholder="Select">
+                <ng-template let-option pTemplate="item">
+                    <span>{{option.label}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="field">
+            <label for="currency">Tipo de Moneda</label>
+            <p-dropdown [(ngModel)]="newAccount.currency" inputId="currency" [options]="currencies"
+                placeholder="Select">
+                <ng-template let-option pTemplate="item">
+                    <span>{{option.label}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="field">
+            <label for="amount">Saldo inial</label>
+            <p-inputNumber id="amount" [(ngModel)]="newAccount.amount" autofocus />
+            <small class="p-error" *ngIf="submitted && !newAccount.amount">Monto Requerido</small>
+        </div>
+
+        <div class="field">
+            <label for="name">Inicio de vigencia</label>
+            <p-calendar id="init_vig" [(ngModel)]="newAccount.init_vig" autofocus />
+            <small class="p-error" *ngIf="submitted && !newAccount.init_vig">Inicio de vigencia</small>
+        </div>
+        <div class="field">
+        </div>
+        <div class="field">
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-text"
+            (click)="deleteAccount()"></button>
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveAccount()"></button>
+    </ng-template>
+</p-dialog>
