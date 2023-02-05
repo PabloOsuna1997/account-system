@@ -1,21 +1,30 @@
 <p-messages [(value)]="msgs"></p-messages>
 
-<div class="row" style="margin-top: 1%; justify-content: center;">
-    <div class="col-4" style="text-align: center;">
-        <h2>Administracion de Usuarios</h2>
+<div class="row"
+    style="margin-top: 1%; justify-content: center; background-color: #20315f; height: 70px; align-items: center; vertical-align:middle;">
+    <div class="col-4" style="text-align: center; vertical-align: middle;">
+        <h1 style="color: white; font-size: 25px">Administracion de usuarios</h1>
     </div>
 </div>
+
+
+<div class="div" style="margin-top: 2%; margin-left: 5%;" >
+    <h1 class="tittle"></h1>
+    <hr class="line">
+</div>
+
+
 <div class="row" style="margin-top: 1%; justify-content: flex-end;">
     <div class="col-4" style="text-align: end;">
-        <button id="button-add-invoice" style="margin-right: 2%;" pButton pRipple type="button" label="Agregar Usuario"
-            class="p-button-outlined p-button-rounded btn-more" icon="pi pi-plus" (click)="openNew()"></button>
+        <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-plus add"
+            style="margin-right: 10%;" (click)="openNew()"></button>
     </div>
 </div>
 
 <div class="grid" style="display: block; align-items: flex-end;">
 
     <div class="card"
-        style="margin: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 10px; align-items: center;">
+        style="margin: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 15px; align-items: center;">
 
         <p-table #clients [value]="usersList" dataKey="dbid" editMode="row" [tableStyle]="{'min-width': '50rem'}"
             [paginator]="true" [rows]="5" [showCurrentPageReport]="true" responsiveLayout="stack"
@@ -56,10 +65,10 @@
                     <td>
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="client.cui">
+                                <input pInputText type="text" [(ngModel)]="client.cui" >
                             </ng-template>
-                            <ng-template pTemplate="output">
-                                {{client.cui}}
+                            <ng-template pTemplate="output" >
+                                <label class="labelTableTittle"> {{client.cui}} </label>
                             </ng-template>
                         </p-cellEditor>
                     </td>
@@ -69,7 +78,7 @@
                                 <input pInputText type="text" [(ngModel)]="client.first_name" required>
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{client.first_name}}
+                                <label class="labelTable"> {{client.first_name}} </label>
                             </ng-template>
                         </p-cellEditor>
                     </td>
@@ -79,7 +88,7 @@
                                 <input pInputText type="text" [(ngModel)]="client.last_name" required>
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{client.last_name}}
+                                <label class="labelTable"> {{client.last_name}} </label>
                             </ng-template>
                         </p-cellEditor>
                     </td>
@@ -89,7 +98,7 @@
                                 <input pInputText type="text" [(ngModel)]="client.gender" required>
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{client.gender}}
+                                <label class="labelTable"> {{client.gender}} </label>
                             </ng-template>
                         </p-cellEditor>
                     </td>
@@ -99,7 +108,7 @@
                                 <input pInputText type="text" [(ngModel)]="client.nit" required>
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{client.nit}}
+                                <label class="labelTable"> {{client.nit}} </label>
                             </ng-template>
                         </p-cellEditor>
                     </td>
@@ -109,7 +118,7 @@
                                 <input pInputText type="text" [(ngModel)]="client.phone_number" required>
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{client.phone_number}}
+                                <label class="labelTable"> {{client.phone_number}} </label>
                             </ng-template>
                         </p-cellEditor>
                     </td>
@@ -119,7 +128,7 @@
                                 <input pInputText type="text" [(ngModel)]="client.email_address" required>
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{client.email_address}}
+                                <label class="labelTable"> {{client.email_address}} </label>
                             </ng-template>
                         </p-cellEditor>
                     </td>
@@ -129,7 +138,7 @@
                                 <input pInputText type="text" [(ngModel)]="client.birthay" required>
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{client.birthay}}
+                                <label class="labelTable">  {{client.birthay | date:'mediumDate'}}  </label>
                             </ng-template>
                         </p-cellEditor>
                     </td>
@@ -139,12 +148,12 @@
                                 <input pInputText type="text" [(ngModel)]="client.marial_status" required>
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{client.marial_status}}
+                                <label class="labelTable"> {{client.marial_status}} </label>
                             </ng-template>
                         </p-cellEditor>
                     </td>
                     <td>
-                        <div class="flex align-items-center justify-content-center gap-2">
+                        <div class="align-items-center justify-content-center gap-2 ">
                             <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
                                 (click)="onRowEditInit(client)" class="p-button-rounded p-button-text"></button>
                             <button *ngIf="!editing" pButton pRipple type="button" icon="pi pi-book"

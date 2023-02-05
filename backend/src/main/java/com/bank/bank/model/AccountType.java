@@ -9,21 +9,21 @@ package com.bank.bank.model;
  * @author J. Pablo Osuna
  */
 
-import java.util.Date;
-import javax.persistence.*;
-
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
+import javax.persistence.*;
+import java.util.Date;
+
 @Data
 @Entity
-@Table(name = "tblcurrency")
-public class Currency {
+@Table(name = "tblaccountType")
+public class AccountType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int dbid;
     @Column
-    private char currency;
+    private String name;
     @Column
     private String description;
     @Column

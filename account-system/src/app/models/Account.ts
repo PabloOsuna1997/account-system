@@ -2,10 +2,10 @@
 
 export interface Account {
     dbid:          number;
-    client_id:     number;
+    clientId:     number;
     amount:        number;
-    init_vig:      string;
-    fin_vig:       string;
+    init_vig:      Date;
+    fin_vig:       Date;
     currency:      number;
     account_type:  number;
     status:        number;

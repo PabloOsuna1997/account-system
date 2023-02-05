@@ -191,7 +191,7 @@ export class AccountService {
 
   public getAccountTypes(): Observable<any> {
     //this.loadingService.setLoading(true);
-    return this.http.get<ResponseApi<AccountType[]>>(`${this.account_api}/account/v1/types`).pipe(
+    return this.http.get<ResponseApi<AccountType[]>>(`${this.account_api}/account/v1/type`).pipe(
       map(response => {
         //this.loadingService.setLoading(false);
         return response
@@ -206,7 +206,7 @@ export class AccountService {
 
   public getCurrencyTypes(): Observable<any> {
     //this.loadingService.setLoading(true);
-    return this.http.get<ResponseApi<CurrencyType[]>>(`${this.account_api}/currency/v1/types`).pipe(
+    return this.http.get<ResponseApi<CurrencyType[]>>(`${this.account_api}/currency/v1/list`).pipe(
       map(response => {
         //this.loadingService.setLoading(false);
         return response
