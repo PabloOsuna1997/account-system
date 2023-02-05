@@ -2,7 +2,6 @@
 CREATE DATABASE Account_Management;
 USE Account_Management;
 
-
 CREATE TABLE tblCurrency(
 	currency CHAR NOT NULL,
 	dbid INT NOT NULL IDENTITY(1,1),
