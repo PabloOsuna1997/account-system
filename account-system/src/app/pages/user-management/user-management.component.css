@@ -1,0 +1,59 @@
+
+.labelTable {
+    margin-top: 3px;
+    font-size: 13px;
+    color: rgb(160, 156, 156) !important;
+    font-weight: bolder;
+}
+
+.labelTableTittle {
+    margin-top: 3px;
+    font-size: 13px;
+    color: black !important;
+    font-weight: bolder;
+}
+
+.th-header-color {
+    background-color: #20315f !important;
+    color: white !important;
+    font-family: AvenirLTStd-Black;
+}
+
+.t-font-table {
+    font-family: AvenirLTStd-Black;
+}
+
+.t-font-table-d {
+    font-family: AvenirLTStd-Black;
+    color: #20315f !important;
+}
+.name{
+    width: 15%;
+    height: 5px;
+    margin-bottom: -20px;
+    color: #0c64a4;
+    opacity: 1;
+}
+
+.line{
+    color: #0c64a4;
+    opacity: 1;
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+.tittle{
+    color: #0c64a4;
+    opacity: 1;
+    font-weight: bold;
+    font-size: x-large;
+    margin-left: 15px;
+    margin-bottom: -17px;
+    font-family: AvenirLTStd-Black;
+    margin-top: 10px;
+}
+
+
+.add{
+    background-color: #20315f !important;
+}
