@@ -5,19 +5,18 @@
 package com.bank.bank.svc.inte;
 
 import com.bank.bank.model.Account;
+import com.bank.bank.model.CheckBook;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  *
  * @author J. Pablo Osuna
  */
-public interface AccountSvcInte {
-    public List<Account> findAll();
-    public Optional<Account> findById(int accountId);
-    public Account save(Account account);
-    public Account update(int dbid, Account account);
+public interface CheckBookSvcInte {
+    public List<CheckBook> findAll();
+    public CheckBook save(CheckBook checkbook);
+    public CheckBook update(int dbid, CheckBook checkbook);
     public boolean delete(int dbid);
-    public List<Account> findByUserId(int userId);
+    public List<CheckBook> findByAccountId(int accountId);
 }

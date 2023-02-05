@@ -72,7 +72,7 @@ export class AccountDashboardComponent {
 	}
 
 	async getAccount() {
-		let accountsObs$ = this.accountApi.getAccountsById(this.userId);
+		let accountsObs$ = this.accountApi.getAccountsByUserId(this.userId);
 		let response = await lastValueFrom(accountsObs$);
 		if (response.status != 200) {
 			this.msgs.push({ severity: 'error', summary: 'Ups!!', detail: 'No se cargaron las cuentas' });
@@ -94,19 +94,25 @@ export class AccountDashboardComponent {
 
 	}
 
-	async openNew() {		
+	async openUpdate(account: Account) {
+		this.newAccount = account;
+		this.submitted = false;
+		this.accountDialog = true;
+	}
+
+	async openNew() {
 		await this.getAccountTypes();
 		await this.getCurrencies();
 
 		this.newAccount = {
-			dbid:          0,
-			clientId:     this.userId,
-			amount:        1,
-			init_vig:      new Date(),
-			fin_vig:       new Date(),
-			currency:      1,
-			account_type:  1,
-			status:        1,
+			dbid: 0,
+			clientId: this.userId,
+			amount: 1,
+			init_vig: new Date(),
+			fin_vig: new Date(),
+			currency: 1,
+			account_type: 1,
+			status: 1,
 			user_registry: "system",
 			user_modified: "system"
 		}
@@ -121,8 +127,8 @@ export class AccountDashboardComponent {
 	}
 
 	async saveAccount() {
-		
-		if(this.newAccount.dbid != 0){
+
+		if (this.newAccount.dbid != 0) {
 			console.log("update account", this.newAccount)
 			let result = await this.updateAccount();
 			if (result) {
@@ -132,7 +138,7 @@ export class AccountDashboardComponent {
 			}
 			this.accountDialog = false;
 			await this.getAccount();
-		}else{
+		} else {
 			console.log("new account", this.newAccount)
 			if (this.newAccount.account_type && this.newAccount.currency) {
 				this.submitted = true;
@@ -152,7 +158,7 @@ export class AccountDashboardComponent {
 		}
 	}
 
-	async updateInfo(account: Account){
+	async updateInfo(account: Account) {
 		this.newAccount = account
 		this.submitted = false;
 		this.accountDialog = true;
@@ -164,24 +170,30 @@ export class AccountDashboardComponent {
 		return response.status == 200
 	}
 
-	async deleteAccount(){
+	async deleteAccount() {
 		let usersObs$ = this.accountApi.deleteAccount(this.newAccount);
 		let response = await lastValueFrom(usersObs$);
-		if (response.status == 200){
+		if (response.status == 200) {
 			this.accountDialog = false;
 			await this.getAccount()
 			this.newAccount = this.newAccount = {
-				dbid:          0,
-				clientId:     this.userId,
-				amount:        1,
-				init_vig:      new Date(),
-				fin_vig:       new Date(),
-				currency:      1,
-				account_type:  1,
-				status:        1,
+				dbid: 0,
+				clientId: this.userId,
+				amount: 1,
+				init_vig: new Date(),
+				fin_vig: new Date(),
+				currency: 1,
+				account_type: 1,
+				status: 1,
 				user_registry: "system",
 				user_modified: "system"
 			}
 		}
+	}
+
+	openChecks(accountId: number) {
+		const userId = this.crypto.encrypt(this.user.dbid.toString());
+		const actId = this.crypto.encrypt(accountId.toString());
+		this.router.navigate([`/management-checks/${userId}/${actId}`], { replaceUrl: true })
 	}
 }

@@ -10,6 +10,7 @@ import { Account } from '../models/Account';
 import { environment } from '../../enviroment/enviroment';
 import { AccountType } from '../models/AccountType';
 import { CurrencyType } from '../models/CurrencyType';
+import { CheckBook } from '../models/CheckBook';
 
 @Injectable({
   providedIn: 'root'
@@ -143,9 +144,24 @@ export class AccountService {
     );
   }
 
-  public getAccountsById(userId: number): Observable<any> {
+  public getAccountsByUserId(userId: number): Observable<any> {
     //this.loadingService.setLoading(true);
     return this.http.get<ResponseApi<Account[]>>(`${this.account_api}/account/v1/user/${userId}`).pipe(
+      map(response => {
+        //this.loadingService.setLoading(false);
+        return response
+      }),
+      catchError((error): any => {
+        //this.loadingService.setLoading(false);
+        console.log("error:", error);
+        return of({ code: error.code })
+      })
+    );
+  }
+
+  public getAccountsById(accountId: number): Observable<any> {
+    //this.loadingService.setLoading(true);
+    return this.http.get<ResponseApi<Account>>(`${this.account_api}/account/v1/${accountId}`).pipe(
       map(response => {
         //this.loadingService.setLoading(false);
         return response
@@ -207,6 +223,70 @@ export class AccountService {
   public getCurrencyTypes(): Observable<any> {
     //this.loadingService.setLoading(true);
     return this.http.get<ResponseApi<CurrencyType[]>>(`${this.account_api}/currency/v1/list`).pipe(
+      map(response => {
+        //this.loadingService.setLoading(false);
+        return response
+      }),
+      catchError((error): any => {
+        //this.loadingService.setLoading(false);
+        console.log("error:", error);
+        return of({ code: error.code })
+      })
+    );
+  }
+
+  public getCheckBookByAccountId(accountId: number): Observable<any> {
+    //this.loadingService.setLoading(true);
+    return this.http.get<ResponseApi<CheckBook[]>>(`${this.account_api}/check-book/v1/account/${accountId}`).pipe(
+      map(response => {
+        //this.loadingService.setLoading(false);
+        return response
+      }),
+      catchError((error): any => {
+        //this.loadingService.setLoading(false);
+        console.log("error:", error);
+        return of({ code: error.code })
+      })
+    );
+  }
+
+  
+  
+  public newCheckBook(checkBook: CheckBook): Observable<any> {
+    //this.loadingService.setLoading(true);
+    return this.http.post<ResponseApi<CheckBook>>(`${this.account_api}/check-book/v1/save`, checkBook).pipe(
+      map(response => {
+        //this.loadingService.setLoading(false);
+        return response
+      }),
+      catchError((error): any => {
+        //this.loadingService.setLoading(false);
+        console.log("error:", error);
+        return of({ code: error.code })
+      })
+    );
+  }
+
+
+  public updateCheckBook(checkBook:  CheckBook): Observable<any> {
+    //this.loadingService.setLoading(true);
+    return this.http.put<CheckBook>(`${this.account_api}/check-book/v1/update/${checkBook.dbid}`, checkBook).pipe(
+      map(response => {
+        //this.loadingService.setLoading(false);
+        return response
+      }),
+      catchError((error): any => {
+        //this.loadingService.setLoading(false);
+        console.log("error:", error);
+        return of({ code: error.code })
+      })
+    );
+  }
+
+
+  public deleteCheckBook(checkBook:  CheckBook): Observable<any> {
+    //this.loadingService.setLoading(true);
+    return this.http.put<CheckBook>(`${this.account_api}/check-book/v1/delete/${checkBook.dbid}`, {}).pipe(
       map(response => {
         //this.loadingService.setLoading(false);
         return response

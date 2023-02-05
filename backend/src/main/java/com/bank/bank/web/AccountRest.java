@@ -33,6 +33,18 @@ public class AccountRest {
     @Autowired
     private AccountSvcInte accountSvcInte;
 
+    @GetMapping("{accountId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Object> getById(@PathVariable int accountId) {
+        Object result;
+        result = accountSvcInte.findById(accountId);
+        if(result == null){
+            return responseUtil.getReponse(204, null, "No se encontro la cuenta");
+        }else{
+            return responseUtil.getReponse(200, result, "listado de cuentas encontradas");
+        }
+    }
+
     @GetMapping("list")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Object> getList() {

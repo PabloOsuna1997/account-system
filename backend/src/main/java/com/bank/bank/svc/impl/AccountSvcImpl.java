@@ -6,13 +6,13 @@ package com.bank.bank.svc.impl;
 
 import com.bank.bank.dao.inte.AccountRepositoryInte;
 import com.bank.bank.model.Account;
-import com.bank.bank.model.Client;
 import com.bank.bank.svc.inte.AccountSvcInte;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -32,6 +32,11 @@ public class AccountSvcImpl implements AccountSvcInte {
     @Override
     public List<Account> findByUserId(int userId) {
         return accountRepositoryInte.findByClientId(userId);
+    }
+
+    @Override
+    public Optional<Account> findById(int accountId) {
+        return accountRepositoryInte.findById(accountId);
     }
 
     @Override

@@ -41,6 +41,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import {InputMaskModule} from 'primeng/inputmask';
 import {DataViewModule} from 'primeng/dataview';
 import { AccountDashboardComponent } from './pages/account-dashboard/account-dashboard.component';
+import { ChecksComponent } from './pages/checks/checks.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AccountDashboardComponent } from './pages/account-dashboard/account-das
     MainDashboardComponent,
     HeaderComponent,
     UserManagementComponent,
-    AccountDashboardComponent
+    AccountDashboardComponent,
+    ChecksComponent
   ],
   imports: [
     BrowserModule,

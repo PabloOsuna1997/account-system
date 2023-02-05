@@ -31,12 +31,25 @@
 </div>
 
 <div class="container" style="margin-top: 25px;">
-    <div class="row align-items-start">
-        <div *ngFor="let account of accountList;" class="col-4" style="margin-top: 15px;">
-            <p-card *ngIf="account.status == 1" (click)="updateInfo(account)">
+    <div class="row">
+        <div *ngFor="let account of accountList;" class="col-6" style="margin-top: 15px;">
+            <p-card *ngIf="account.status == 1"><!--(click)="updateInfo(account)"-->
                 <ng-template pTemplate="header">
-                    <div class="row">
+                    <div class="row" style="justify-content: flex-end !important;">
                         <div class="col-6">
+                        </div>
+                        <div class="col-6 justify-content-end"  style="justify-content: flex-end !important;">
+                            <div class="row" style="margin-top: 1%; justify-content: flex-end;">
+                                <div class="col-4" style="text-align: end;">
+                                    <button pButton pRipple type="button" icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-pencil add" 
+                                    (click)="openUpdate(account)"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="justify-content: flex-start !important;">
+                        <div class="col-6 justify-content-start">
                             <div class="div" class="header-card">
                                 {{user.first_name}} {{user.last_name}}
                             </div>
@@ -53,7 +66,8 @@
                     Saldo disponible: {{ (account.currency == 1) ? 'Q' : '$'}} {{account.amount}}
                 </div>
                 <ng-template pTemplate="footer">
-                    <button type="button" class="btn btn-info checks">Chequeras</button>
+                    <button type="button" class="btn btn-info checks"
+                        (click)="openChecks(account.dbid)">Chequeras</button>
                 </ng-template>
             </p-card>
         </div>
@@ -102,7 +116,8 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-text" (click)="deleteAccount()"></button>
+        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-text"
+            (click)="deleteAccount()"></button>
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
         <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveAccount()"></button>
     </ng-template>
