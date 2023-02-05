@@ -1,0 +1,516 @@
+{
+	"info": {
+		"_postman_id": "ec684e29-c54e-49f3-9801-07ef837af4a2",
+		"name": "BANK-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET CLIENTS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/client/v1/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"client",
+						"v1",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CHECK BOOOKS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/check-book/v1/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"check-book",
+						"v1",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CHECK BOOOKS BY ACCOUNT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/check-book/v1/account/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"check-book",
+						"v1",
+						"account",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CLIENTS BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/client/v1/list?user=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"client",
+						"v1",
+						"list"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET CURRENCIES",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"JOSE PABLO\",\r\n    \"last_name\": \"LEON\",\r\n    \"cui\": 4321,\r\n    \"nit\": \"123\",\r\n    \"phone_number\": 123,\r\n    \"email_address\": \"asd@gmail.com\",\r\n    \"birthay\": \"2023-02-04T01:38:42.040+00:00\",\r\n    \"marial_status\": \"1\",\r\n    \"status\": 1,\r\n    \"person_type\": 1,\r\n    \"gender\": 2,\r\n    \"user_registry\": \"jposuna\",\r\n    \"user_modified\": \"jposuna\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/currency/v1/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"currency",
+						"v1",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SAVE CLIENT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"miguel PABLO\",\r\n    \"last_name\": \"LEON\",\r\n    \"cui\": 4321,\r\n    \"nit\": \"123\",\r\n    \"phone_number\": 123,\r\n    \"email_address\": \"asd@gmail.com\",\r\n    \"birthay\": \"2023-02-04T01:38:42.040+00:00\",\r\n    \"marial_status\": \"1\",\r\n    \"status\": 1,\r\n    \"person_type\": 1,\r\n    \"gender\": 2,\r\n    \"user_registry\": \"jposuna\",\r\n    \"user_modified\": \"jposuna\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/client/v1/save",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"client",
+						"v1",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SAVE CHECKBOOK",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"accountId\": 1,\r\n    \"start_correlative\": 21,\r\n    \"fin_correlative\": 41,\r\n    \"quantity_checks\": 20,\r\n    \"status\": 1,\r\n    \"user_registry\": \"sys\",\r\n    \"user_modified\": \"sys\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/check-book/v1/save",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"check-book",
+						"v1",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE CLIENT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dbid\": 56,\r\n    \"first_name\": \"JOSE PABLO\",\r\n    \"last_name\": \"LEON\",\r\n    \"cui\": 4321,\r\n    \"nit\": \"123\",\r\n    \"phone_number\": 123,\r\n    \"email_address\": \"asd@gmail.com\",\r\n    \"birthay\": \"2023-02-04T01:38:42.040+00:00\",\r\n    \"marial_status\": \"1\",\r\n    \"status\": 1,\r\n    \"person_type\": 1,\r\n    \"gender\": 2,\r\n    \"user_registry\": \"jposuna\",\r\n    \"user_modified\": \"jposuna\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/client/v1/delete/56",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"client",
+						"v1",
+						"delete",
+						"56"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE ACCOUNT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dbid\": 55,\r\n    \"first_name\": \"VHEPE\",\r\n    \"last_name\": \"OSUNA\",\r\n    \"cui\": 4321,\r\n    \"nit\": \"123\",\r\n    \"phone_number\": 123,\r\n    \"email_address\": \"asd@gmail.com\",\r\n    \"birthay\": \"2023-02-04T01:38:42.040+00:00\",\r\n    \"marial_status\": \"1\",\r\n    \"status\": 1,\r\n    \"person_type\": 1,\r\n    \"gender\": 2,\r\n    \"user_modified\": \"sysdba\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/client/v1/update/55",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"client",
+						"v1",
+						"update",
+						"55"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE CHECKBOOOK",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dbid\": 2,\r\n    \"accountId\": 5,\r\n    \"start_correlative\": 21,\r\n    \"fin_correlative\": 61,\r\n    \"quantity_checks\": 40,\r\n    \"status\": 1,\r\n    \"user_modified\": \"sys\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/check-book/v1/update/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"check-book",
+						"v1",
+						"update",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET PERSONS TYPE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/person-type/v1/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"person-type",
+						"v1",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET GENDER",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/gender/v1/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gender",
+						"v1",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ACCOUNTS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/account/v1/list",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"v1",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SAVE ACCOUNT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"clientId\": 1,\r\n    \"amount\": 12.0,\r\n    \"init_vig\": \"2023-02-04T19:42:09.133+00:00\",\r\n    \"fin_vig\": \"2023-02-04T19:42:09.133+00:00\",\r\n    \"currency\": 2,\r\n    \"account_type\": 1,\r\n    \"status\": 1,\r\n    \"user_registry\": \"s\",\r\n    \"user_modified\": \"s\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/account/v1/save",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"v1",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE ACCOUNT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dbid\": 5,\r\n    \"client_id\": 1,\r\n    \"amount\": 1000000000,\r\n    \"init_vig\": \"2023-02-04T19:42:09.133+00:00\",\r\n    \"fin_vig\": \"2023-02-04T19:42:09.133+00:00\",\r\n    \"currency\": 2,\r\n    \"account_type\": 1,\r\n    \"status\": 1,\r\n    \"user_modified\": \"s\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/account/v1/delete/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"v1",
+						"delete",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE CHECK BOOK",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/check-book/v1/delete/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"check-book",
+						"v1",
+						"delete",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE ACCOUNT",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"dbid\": 5,\r\n        \"client_id\": 1,\r\n        \"amount\":1000000000,\r\n        \"init_vig\": \"2023-02-04T19:42:09.133+00:00\",\r\n        \"fin_vig\": \"2023-02-04T19:42:09.133+00:00\",\r\n        \"currency\": 2,\r\n        \"account_type\": 1,\r\n        \"status\": 1,\r\n        \"user_modified\": \"s\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/account/v1/update/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"v1",
+						"update",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ACCOUNTS by user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/account/v1/user/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"v1",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ACCOUNT TYPE",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/account/v1/type",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"v1",
+						"type"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ACCOUNTS BY ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/account/v1/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"account",
+						"v1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
