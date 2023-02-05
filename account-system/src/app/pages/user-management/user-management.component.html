@@ -1,0 +1,251 @@
+
+<p-messages [(value)]="msgs"></p-messages>
+<div class="row"
+style="margin-top: 1%; justify-content: center; background-color: #20315f; height: 70px; align-items: center; vertical-align:middle;">
+<div class="col-4" style="text-align: center; vertical-align: middle;">
+    <h1 style="color: white; font-size: 25px">Administracion de usuarios</h1>
+</div>
+</div>
+
+<p-breadcrumb [model]="items"></p-breadcrumb>
+
+<div class="div" style="margin-top: 2%; margin-left: 5%;" >
+    <h1 class="tittle"></h1>
+    <hr class="line">
+</div>
+
+
+<div class="row" style="margin-top: 1%; justify-content: flex-end;">
+    <div class="col-4" style="text-align: end;">
+        <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-plus add"
+            style="margin-right: 10%;" (click)="openNew()"></button>
+    </div>
+</div>
+
+<div class="grid" style="display: block; align-items: flex-end;">
+
+    <div class="card"
+        style="margin: 2%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-radius: 15px;">
+
+        <p-table #clients [value]="usersList" dataKey="dbid" editMode="row" [tableStyle]="{'min-width': '50rem'}"
+            [paginator]="true" [rows]="5" [showCurrentPageReport]="true" responsiveLayout="stack"
+            currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} usuarios"
+            [rowsPerPageOptions]="[5,15,25]">
+
+            <ng-template pTemplate="header" background-color: #20315f;>
+                <tr>
+                    <!--th style="width:20%">CODCLI</th-->
+                    <th style="width:5px !important" class="th-header-color">CUI</th>
+                    <th style="width:5px !important" class="th-header-color">Nombres</th>
+                    <th style="width:5px !important" class="th-header-color">Apellidos</th>
+                    <th style="width:5px !important" class="th-header-color">Genero</th>
+                    <th style="width:5px !important" class="th-header-color">NIT</th>
+                    <th style="width:5px !important" class="th-header-color">No. Telefono</th>
+                    <th style="width:5px !important" class="th-header-color">Correo</th>
+                    <th style="width:5px !important" class="th-header-color">Fecha Nac</th>
+                    <th style="width:5px !important" class="th-header-color">Estado Civil</th>
+                    <th style="width:5px !important" class="th-header-color">Tipo</th>
+                    <th style="width:5px !important" class="th-header-color"></th>
+                </tr>
+                <tr>
+                    <th class="data-table-head"><p-columnFilter type="text" field="cui"></p-columnFilter></th>
+                    <th class="data-table-head"><p-columnFilter type="text" field="first_name"></p-columnFilter></th>
+                    <th class="data-table-head"><p-columnFilter type="text" field="last_name"></p-columnFilter></th>
+                    <th class="data-table-head"></th>
+                    <th class="data-table-head"><p-columnFilter type="text" field="nit"></p-columnFilter></th>
+                    <th class="data-table-head"></th>
+                    <th class="data-table-head"></th>
+                    <th class="data-table-head"></th>
+                    <th class="data-table-head"></th>
+                    <th class="data-table-head"></th>
+                    <th class="data-table-head"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-client let-editing="editing" let-ri="rowIndex">
+                <tr [pEditableRow]="client" *ngIf="client.status == 1">
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="client.cui" >
+                            </ng-template>
+                            <ng-template pTemplate="output" >
+                                <label class="labelTableTittle"> {{client.cui}} </label>
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="client.first_name" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                <label class="labelTable"> {{client.first_name}} </label>
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="client.last_name" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                <label class="labelTable"> {{client.last_name}} </label>
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="client.gender" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                <label class="labelTable"> {{client.gender}} </label>
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="client.nit" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                <label class="labelTable"> {{client.nit}} </label>
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="client.phone_number" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                <label class="labelTable"> {{client.phone_number}} </label>
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="client.email_address" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                <label class="labelTable"> {{client.email_address}} </label>
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="client.birthay" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                <label class="labelTable">  {{client.birthay | date:'mediumDate'}}  </label>
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="client.marial_status" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                <label class="labelTable"> {{client.marial_status}} </label>
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <div class="align-items-center justify-content-center gap-2 ">
+                            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
+                                (click)="onRowEditInit(client)" class="p-button-rounded p-button-text"></button>
+                            <button *ngIf="!editing" pButton pRipple type="button" icon="pi pi-book"
+                                (click)="openAccounts(client)" class="p-button-rounded p-button-text"></button>
+                            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+                                (click)="onRowEditSave(client)"
+                                class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+                                (click)="onRowEditCancel(client, ri)"
+                                class="p-button-rounded p-button-text p-button-danger"></button>
+                            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-trash"
+                                (click)="onDeleteUser(client, ri)"
+                                class="p-button-rounded p-button-text p-button-danger"></button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+
+
+<p-dialog [(visible)]="clientDialog" [style]="{width: '450px'}" header="Client Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-messages [(value)]="msgs"></p-messages>
+        <div class="field">
+            <label for="name">CUI/DPI</label>
+            <p-inputNumber [maxlength]="17" id="cui" [(ngModel)]="newClient.cui" autofocus />
+            <small class="p-error" *ngIf="submitted && !newClient.cui">CUI requerido.</small>
+        </div>
+        <div class="field">
+            <label for="name">NIT</label>
+            <input type="text" pInputText id="nit" [(ngModel)]="newClient.nit" required autofocus />
+            <small class="p-error" *ngIf="submitted && !newClient.nit">Nombre requerido.</small>
+        </div>
+        <div class="field">
+            <label for="name">Nombres</label>
+            <input type="text" pInputText id="first_name" [(ngModel)]="newClient.first_name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !newClient.first_name">Nombre requerido.</small>
+        </div>
+        <div class="field">
+            <label for="name">Apellidos</label>
+            <input type="text" pInputText id="last_name" [(ngModel)]="newClient.last_name" required autofocus />
+            <small class="p-error" *ngIf="submitted && !newClient.last_name">Nombre requerido.</small>
+        </div>
+
+        <div class="field">
+            <label for="gender">Genero</label>
+            <p-dropdown [(ngModel)]="newClient.gender" inputId="gender" [options]="genders" placeholder="Select">
+                <ng-template let-option pTemplate="item">
+                    <span>{{option.label}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+
+        <div class="field">
+            <label for="name">No. Telefono</label>
+            <p-inputNumber [maxlength]="10" id="phone_number" [(ngModel)]="newClient.phone_number" autofocus
+                [(ngModel)]="newClient.phone_number" mask="9999-9999" />
+        </div>
+
+        <div class="field">
+            <label for="name">Coreo</label>
+            <input type="text" pInputText id="email_address" [(ngModel)]="newClient.email_address" required autofocus />
+            <small class="p-error" *ngIf="submitted && !newClient.email_address">Nombre requerido.</small>
+        </div>
+        <div class="field">
+            <label for="person_type">Tipo</label>
+            <p-dropdown [(ngModel)]="newClient.person_type" inputId="person_type" [options]="personsType"
+                placeholder="Select">
+                <ng-template let-option pTemplate="item">
+                    <span>{{option.label}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="field">
+            <label for="name">Fecha de nacimiento</label>
+            <p-calendar id="birthay" [(ngModel)]="newClient.birthay" autofocus />
+            <small class="p-error" *ngIf="submitted && !newClient.birthay">Nombre requerido.</small>
+        </div>
+        <div class="field">
+        </div>
+        <div class="field">
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveClient()"></button>
+    </ng-template>
+</p-dialog>

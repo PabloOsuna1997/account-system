@@ -1,0 +1,61 @@
+.header-card{
+    margin-left: 15px !important;
+    margin-top: 15px !important;
+    font-weight: bolder;
+}
+
+
+.account-number{
+    font-weight: bolder;
+    color: #20315f;  
+}
+
+.amount{
+    font-weight: bolder;
+    color: #999999;  
+}
+
+
+.type{
+    font-weight: bolder;
+}
+
+
+.checks{
+    width: 100% !important;
+    color: #4D4D4D;  
+    font-weight: bolder;
+}
+
+.name{
+    width: 15%;
+    height: 5px;
+    margin-bottom: -20px;
+    color: #0c64a4;
+    opacity: 1;
+}
+
+.line{
+    color: #0c64a4;
+    opacity: 1;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.tittle{
+    color: #0c64a4;
+    opacity: 1;
+    font-weight: bold;
+    font-size: x-large;
+    margin-left: 15px;
+    margin-bottom: -17px;
+    font-family: AvenirLTStd-Black;
+    margin-top: 10px;
+}
+
+.add{
+    background-color: #20315f !important;
+}
+
+
+
