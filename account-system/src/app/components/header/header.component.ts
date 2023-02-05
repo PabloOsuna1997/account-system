@@ -12,8 +12,8 @@ export class HeaderComponent {
 
   ngOnInit() {
       this.items = [
-          {label:'Home', url: '/'},
-          {label:'Users', url: '/management-users'}];
+          {label:'Home', url: '/'}
+        ];
   }
   
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Client } from '../../models/Client';
 import { Account } from '../../models/Account';
-import { SelectItem, MessageService } from 'primeng/api';
+import { SelectItem, MessageService, MenuItem } from 'primeng/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../../Services/account.service';
 import { lastValueFrom } from 'rxjs';
@@ -27,6 +27,7 @@ export class ChecksComponent {
   submitted!: boolean;
   newCheckbook!: CheckBook;
   CheckBookDialog: boolean = false;
+  public items!: MenuItem[];
 
   constructor(private messageService: MessageService, private accountApi: AccountService, private router: Router, private crypto: Crypto,
     private _Activatedroute: ActivatedRoute) { }
@@ -45,6 +46,13 @@ export class ChecksComponent {
         })();
 
       }
+
+      this.items = [
+				{ label: 'Home', url: '/' },
+				{ label: 'Users', url: 'management-users/' },
+				{ label: 'Accounts', url: `management-account/${usId}` },
+        { label: 'CheckBooks', url: `management-checks/${usId}/${accId}` }
+			];
     });
 
     this.quantityList.push({ label: "20", value: "20" })
@@ -179,7 +187,7 @@ export class ChecksComponent {
   }
 
   hideDialog() {
-    this.accountDialog = false;
+    this.CheckBookDialog = false;
     this.submitted = false;
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SelectItem } from 'primeng/api';
+import { SelectItem, MenuItem } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { AccountService } from '../../Services/account.service';
 import { lastValueFrom } from 'rxjs';
@@ -30,6 +30,7 @@ export class UserManagementComponent {
 	personsType: SelectItem[] = [];
 	msgs: any = [];
 	submitted!: boolean;
+	public items!: MenuItem[];
 
 	constructor(private messageService: MessageService, private accountApi: AccountService, private router: Router,
 		private crypto: Crypto) {
@@ -38,6 +39,12 @@ export class UserManagementComponent {
 	ngOnInit() {
 		//this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
 		//this.msgs.push({ severity: 'error', summary: 'Ups!!', detail: 'No se cargaron los usuarios' });
+
+		this.items = [
+			{ label: 'Home', url: '/' },
+			{ label: 'Users', url: 'management-users/' }
+		];
+
 		(async () => {
 			await this.getUsers();
 			await this.getGenders();

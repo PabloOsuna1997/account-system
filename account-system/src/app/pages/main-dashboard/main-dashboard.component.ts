@@ -17,16 +17,18 @@ export class MainDashboardComponent {
       "name": "Administrador de usuarios",
       "Image": "url",
       "redirectTo": "management-users"
-    },
-    {
-      "name": "Cuentas",
-      "Image": "url",
-      "redirectTo": "/"
-    },
+    }
   ];
 
+  
+	public items!: MenuItem[];
+
   constructor(private router: Router) { }
+
   ngOnInit() {
+    this.items = [
+			{ label: 'Home', url: '/' }
+		]; 
   }
 
 

@@ -1,10 +1,12 @@
+
 <div class="row"
-    style="margin-top: 1%; justify-content: center; background-color: #20315f; height: 70px; align-items: center; vertical-align:middle;">
-    <div class="col-4" style="text-align: center; vertical-align: middle;">
-        <h1 style="color: white; font-size: 25px">Administracion de cuentas</h1>
-    </div>
+style="margin-top: 1%; justify-content: center; background-color: #20315f; height: 70px; align-items: center; vertical-align:middle;">
+<div class="col-4" style="text-align: center; vertical-align: middle;">
+    <h1 style="color: white; font-size: 25px">Administracion de cuentas</h1>
+</div>
 </div>
 
+<p-breadcrumb [model]="items"></p-breadcrumb>
 
 <div class="div" style="margin-top: 2%; margin-left: 5%;" *ngIf="user">
     <h1 class="tittle">000000{{user.dbid}} - {{user.first_name}} {{user.last_name}}</h1>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MessageService, SelectItem } from 'primeng/api';
+import { MessageService, SelectItem, MenuItem } from 'primeng/api';
 import { AccountService } from '../../Services/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
@@ -25,6 +25,7 @@ export class AccountDashboardComponent {
 	accountTypes: SelectItem[] = [];
 	currencies: SelectItem[] = [];
 	submitted!: boolean;
+	public items!: MenuItem[];
 
 	constructor(private messageService: MessageService, private accountApi: AccountService, private router: Router, private crypto: Crypto,
 		private _Activatedroute: ActivatedRoute) { }
@@ -40,7 +41,14 @@ export class AccountDashboardComponent {
 				})();
 
 			}
+			this.items = [
+				{ label: 'Home', url: '/' },
+				{ label: 'Users', url: 'management-users/' },
+				{ label: 'Accounts', url: `management-account/${id}` }
+			];
 		});
+
+		
 	}
 
 	async getAccountTypes() {
